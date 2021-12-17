@@ -778,6 +778,7 @@ def _pre_fit(
     fit_intercept,
     copy,
     check_input=True,
+    check_gram=True,
     sample_weight=None,
 ):
     """Function used at beginning of fit in linear models with L1 or L0 penalty.
@@ -832,7 +833,7 @@ def _pre_fit(
             # recompute Gram
             precompute = "auto"
             Xy = None
-        elif check_input:
+        elif check_gram:
             # If we're going to use the user's precomputed gram matrix, we
             # do a quick check to make sure its not totally bogus.
             _check_precomputed_gram_matrix(X, precompute, X_offset, X_scale)
